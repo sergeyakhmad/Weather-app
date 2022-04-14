@@ -16,4 +16,4 @@ const quote = fetch(`https://api.goprogram.ai/inspiration`).then(response => {
     })
     .catch(error => {
         console.log(error);
-    });;
+    });
