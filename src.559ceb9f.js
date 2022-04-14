@@ -3,4 +3,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/event");
 },{"./sass/main.scss":"clu1","./js/event":"clu1"}]},{},["Focm"], null)
-//# sourceMappingURL=/Weather-app/src.b8cfd513.js.map
+//# sourceMappingURL=/Weather-app/src.559ceb9f.js.map
