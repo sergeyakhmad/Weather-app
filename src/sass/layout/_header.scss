@@ -1,10 +1,15 @@
 .thumb-input {
   position: relative;
   display: flex;
-  max-width: 280px;
+  width: 280px;
+  height: 48px;
   margin: 0 auto;
   padding: 13px 20px;
   border-radius: 30px;
+
+  @media screen and (min-width: 768px) {
+    width: 500px;
+  }
 
   .thumb-input__location {
     position: absolute;
