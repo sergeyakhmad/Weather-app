@@ -1,6 +1,8 @@
 parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcelRequire,u="function"==typeof require&&require;function f(t,n){if(!r[t]){if(!e[t]){var i="function"==typeof parcelRequire&&parcelRequire;if(!n&&i)return i(t,!0);if(o)return o(t,!0);if(u&&"string"==typeof t)return u(t);var c=new Error("Cannot find module '"+t+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[t][1][r]||r},p.cache={};var l=r[t]=new f.Module(t);e[t][0].call(l.exports,p,l,l.exports,this)}return r[t].exports;function p(e){return f(p.resolve(e))}}f.isParcelRequire=!0,f.Module=function(e){this.id=e,this.bundle=f,this.exports={}},f.modules=e,f.cache=r,f.parent=o,f.register=function(r,t){e[r]=[function(e,r){r.exports=t},{}]};for(var c=0;c<t.length;c++)try{f(t[c])}catch(e){i||(i=e)}if(t.length){var l=f(t[t.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):n&&(this[n]=l)}if(parcelRequire=f,i)throw i;return f}({"clu1":[function(require,module,exports) {
 
+},{}],"hC31":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getWeatherData=r,exports.fiveDays=exports.today=void 0;const e="428ed231089210f0f91b7ff93c680cd1",t="weather";exports.today=t;const o="forecast";function r(o,r=t){return fetch(`https://api.openweathermap.org/data/2.5/${r}?q=${o}&appid=${e}`).then(e=>e.ok?e.json():Promise.reject("404"))}exports.fiveDays=o;
 },{}],"Focm":[function(require,module,exports) {
-"use strict";require("./sass/main.scss"),require("./js/event");
-},{"./sass/main.scss":"clu1","./js/event":"clu1"}]},{},["Focm"], null)
-//# sourceMappingURL=/Weather-app/src.7628abd9.js.map
+"use strict";require("./sass/main.scss"),require("./js/event");var e=require("./js/api-service");(0,e.getWeatherData)("kiev",e.today).then(console.log),(0,e.getWeatherData)("kiev",e.fiveDays).then(console.log);
+},{"./sass/main.scss":"clu1","./js/event":"clu1","./js/api-service":"hC31"}]},{},["Focm"], null)
+//# sourceMappingURL=/Weather-app/src.44ece555.js.map
