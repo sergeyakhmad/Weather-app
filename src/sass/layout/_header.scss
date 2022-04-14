@@ -1,0 +1,28 @@
+.thumb-input {
+  position: relative;
+  display: flex;
+  max-width: 280px;
+  margin: 0 auto;
+  padding: 13px 20px;
+  border-radius: 30px;
+
+  .thumb-input__location {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .thumb-input__star {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .thumb-input__text {
+    width: 100%;
+    margin: 0 35px;
+    border: none;
+  }
+}
