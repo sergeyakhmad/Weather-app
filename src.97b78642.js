@@ -9,4 +9,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/event");var e=require("./js/api-service");(0,e.getWeatherData)("kiev",e.today).then(console.log),(0,e.getWeatherData)("kiev",e.fiveDays).then(console.log);
 },{"./sass/main.scss":"clu1","./js/event":"lDTy","./js/api-service":"hC31"}]},{},["Focm"], null)
-//# sourceMappingURL=/Weather-app/src.a7c89527.js.map
+//# sourceMappingURL=/Weather-app/src.97b78642.js.map
