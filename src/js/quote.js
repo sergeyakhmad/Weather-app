@@ -1,10 +1,10 @@
 const quoteMarkup = (quote, author) => {
-    document.querySelector('.quote').innerHTML = `
-    <p>${quote}</p>
-    <span>${author}</span>
-    `;
+    document.querySelector('.home-day').insertAdjacentHTML('beforeend',
+        `<div class="quote">
+            <p>${quote}</p>
+            <span>${author}</span>
+        <div>`);
 }
-let arr = [];
 const quote = fetch(`https://api.goprogram.ai/inspiration`).then(response => {
     if (!response.ok) {
         throw new Error(response.status);
