@@ -1,6 +1,7 @@
 .quote {
     width: 280px;
     color: white;
+    margin: 0 auto;
 
     @media screen and (min-width: 768px) {
         width: 379px;
@@ -8,9 +9,10 @@
 
     @media screen and (min-width: 1280px) {
         width: 340px;
+        position: absolute;
+        right: 40px;
     }
 
-    float: right;
     text-align: right;
 
     p {
