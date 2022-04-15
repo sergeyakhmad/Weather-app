@@ -5,10 +5,10 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"lDTy":[function(require,module,exports) {
 "use strict";var e=r(require("./refs"));function r(e){return e&&e.__esModule?e:{default:e}}
 },{"./refs":"VyiV"}],"hC31":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getWeatherData=r,exports.fiveDays=exports.today=void 0;const e="428ed231089210f0f91b7ff93c680cd1",t="weather";exports.today=t;const o="forecast";function r(o,r=t){return fetch(`https://api.openweathermap.org/data/2.5/${r}?q=${o}&appid=${e}`).then(e=>e.ok?e.json():Promise.reject("404"))}exports.fiveDays=o;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getWeatherData=r,exports.oneCallApi=a,exports.fiveDays=exports.today=void 0;const e="428ed231089210f0f91b7ff93c680cd1",t="weather";exports.today=t;const o="forecast";function r(o,r=t){return fetch(`https://api.openweathermap.org/data/2.5/${r}?q=${o}&appid=${e}&units=metric`).then(e=>e.ok?e.json():Promise.reject("404"))}function a(t,o){return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${t}&lon=${o}&appid=${e}&units=metric`).then(e=>e.ok?e.json():Promise.reject("404"))}exports.fiveDays=o,a(50.4333,30.5167).then(console.log);
 },{}],"tj8B":[function(require,module,exports) {
 const t=(t,n)=>{document.querySelector(".quote").innerHTML=`\n    <p>${t}</p>\n    <span>${n}</span>\n    `};let n=[];const o=fetch("https://api.goprogram.ai/inspiration").then(t=>{if(!t.ok)throw new Error(t.status);return t.json()}).then(n=>{t(n.quote,n.author)}).catch(t=>{console.log(t)});
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/event");var e=require("./js/api-service");require("./js/quote"),(0,e.getWeatherData)("kiev",e.today).then(console.log),(0,e.getWeatherData)("kiev",e.fiveDays).then(console.log);
 },{"./sass/main.scss":"clu1","./js/event":"lDTy","./js/api-service":"hC31","./js/quote":"tj8B"}]},{},["Focm"], null)
-//# sourceMappingURL=/Weather-app/src.8590c5e7.js.map
+//# sourceMappingURL=/Weather-app/src.5ccb7ce7.js.map
