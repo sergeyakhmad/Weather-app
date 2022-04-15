@@ -11,4 +11,4 @@ const t=(t,n)=>{document.querySelector(".quote").innerHTML=`\n    <p>${t}</p>\n 
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/event");var e=require("./js/api-service");require("./js/quote"),(0,e.getWeatherData)("kiev",e.today).then(console.log),(0,e.getWeatherData)("kiev",e.fiveDays).then(console.log);
 },{"./sass/main.scss":"clu1","./js/event":"lDTy","./js/api-service":"hC31","./js/quote":"tj8B"}]},{},["Focm"], null)
-//# sourceMappingURL=/Weather-app/src.5ccb7ce7.js.map
+//# sourceMappingURL=/Weather-app/src.836ce477.js.map
