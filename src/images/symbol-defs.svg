@@ -7,5 +7,7 @@
 <symbol id="icon-star" viewBox="0 0 35 32">
 <path fill="none" stroke="#7e8691" style="stroke: var(--color2, #7e8691)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1.6" d="M17.6 2.589l3.37 10.373h10.907l-8.824 6.41 0.181 0.554 3.19 9.819-8.824-6.41-0.47 0.341-8.352 6.069 3.37-10.373-0.47-0.341-8.352-6.070h10.906l0.179-0.554 3.19-9.818z"></path>
 </symbol>
+<symbol id="icon-prev" viewBox="0 -3 32 32"><path d="M20.914 9.914l-2.829-2.829-8.914 8.914 8.914 8.914 2.828-2.828-6.086-6.086z"></path></symbol>
+<symbol id="icon-next" viewBox="0 -3 32 32"><path d="M11.086 22.086l2.829 2.829 8.914-8.914-8.914-8.914-2.828 2.828 6.086 6.086z"></path></symbol>
 </defs>
 </svg>
