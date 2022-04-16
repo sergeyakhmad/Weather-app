@@ -29,5 +29,6 @@
     "first": "0.0.3",
     "lodash.debounce": "^4.0.8",
     "siema": "^1.5.1"
+    "@glidejs/glide": "^3.5.2"
   }
 }
