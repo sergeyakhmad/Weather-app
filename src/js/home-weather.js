@@ -4,7 +4,7 @@ getWeatherData('chernihiv', today).then(data => {
   markupHomeWeather(data);
 });
 
-function markupHomeWeather(data) {
+export function markupHomeWeather(data) {
   console.log(data);
   const temperature = Math.round(data.main.temp);
   const temperatureMin = Math.round(data.main.temp_min);
