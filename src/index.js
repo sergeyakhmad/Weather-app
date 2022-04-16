@@ -1,5 +1,6 @@
 import './sass/main.scss';
 import './js/event';
+import './js/favorite-city';
 import { fiveDays, getWeatherData, today } from './js/api-service';
 import './js/quote';
 import './js/bg-api';
