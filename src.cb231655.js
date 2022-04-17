@@ -36,4 +36,4 @@ module.exports="/Weather-app/symbol-defs.abac8a71.svg";
 },{"./api-service":"hC31","./date":"pEcx","./glide-settings":"yDN0","../images/symbol-defs.svg":"bKpA","./refs/":"VyiV"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/event"),require("./js/favorite-city");var e=require("./js/api-service");require("./js/quote"),require("./js/bg-api"),require("./js/home-weather"),require("./js/five-days"),(0,e.getWeatherData)("kiev",e.today).then(console.log),(0,e.getWeatherData)("kiev",e.fiveDays).then(console.log);
 },{"./sass/main.scss":"clu1","./js/event":"lDTy","./js/favorite-city":"uEyK","./js/api-service":"hC31","./js/quote":"tj8B","./js/bg-api":"r1Wn","./js/home-weather":"S7J5","./js/five-days":"tPwL"}]},{},["Focm"], null)
-//# sourceMappingURL=/Weather-app/src.5c387dd3.js.map
+//# sourceMappingURL=/Weather-app/src.cb231655.js.map
