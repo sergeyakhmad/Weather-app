@@ -9,4 +9,6 @@ export default {
   fiveDaysNode: document.querySelector('.five-days-container'),
   btnDaysNode: document.querySelector('.home-days-btn'),
   btnContainerNode: document.querySelector('.home-buttons'),
+  homeWeather: document.querySelector('.home-weather'),
+  homeDay: document.querySelector('.home-day'),
 };
