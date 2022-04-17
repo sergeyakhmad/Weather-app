@@ -26,8 +26,8 @@
     "sass": "^1.32.8"
   },
   "dependencies": {
+    "@glidejs/glide": "^3.5.2",
     "lodash.debounce": "^4.0.8",
-    "siema": "^1.5.1",
-    "@glidejs/glide": "^3.5.2"
+    "siema": "^1.5.1"
   }
 }
