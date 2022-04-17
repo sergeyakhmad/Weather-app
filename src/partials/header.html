@@ -1,6 +1,6 @@
 <header>
-  <div class="header-wrap">
-    <form action="" class="thumb-input container">
+  <div class="container">
+    <form action="" class="thumb-input">
       <button id="search" type="submit">
         <svg class="thumb-input__location" width="22" height="22">
           <use href="./images/symbol-defs.svg#icon-location"></use>
@@ -13,19 +13,22 @@
         </svg>
       </button>
     </form>
-
-    <div class="favorite-city">
-      <button class="favorite-city__btnPrev">
-        <svg class="favorite-city__icon" width="22" height="22">
-          <use href="./images/symbol-defs.svg#icon-prev"></use>
-        </svg>
-      </button>
-      <div class="favorite-city__list"></div>
-      <button class="favorite-city__btnNext">
-        <svg class="favorite-city__icon" width="22" height="22">
-          <use href="./images/symbol-defs.svg#icon-next"></use>
-        </svg>
-      </button>
+    <div class="glide favorite-city">
+      <div class="glide__track favorite-city__wrap" data-glide-el="track">
+        <ul class="glide__slides favorite-city__list"></ul>
+      </div>
+      <div class="glide__arrows" data-glide-el="controls">
+        <button class="glide__arrow glide__arrow--left btnPrev" data-glide-dir="<">
+          <svg class="favorite-city__icon" width="22" height="22">
+            <use href="./images/symbol-defs.svg#icon-prev"></use>
+          </svg>
+        </button>
+        <button class="glide__arrow glide__arrow--right btnNext" data-glide-dir=">">
+          <svg class="favorite-city__icon" width="22" height="22">
+            <use href="./images/symbol-defs.svg#icon-next"></use>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </header>
