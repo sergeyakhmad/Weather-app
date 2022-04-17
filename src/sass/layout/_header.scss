@@ -1,3 +1,9 @@
+.header-wrap {
+  padding-top: 30px;
+  @media screen and (min-width: 480px) {
+    padding-top: 60px;
+  }
+}
 .thumb-input {
   position: relative;
   display: flex;
@@ -5,8 +11,11 @@
   width: 280px;
   height: 48px;
   margin: 0 auto;
+
   padding: 13px 20px;
   border-radius: 30px;
+
+  background-color: #fff;
 
   @media screen and (min-width: 480px) {
     width: 500px;
@@ -49,6 +58,12 @@
   .thumb-input__text {
     width: 100%;
     margin: 0 35px;
+    outline: none;
     border: none;
+
+    font-family: 'Lado';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
   }
 }
