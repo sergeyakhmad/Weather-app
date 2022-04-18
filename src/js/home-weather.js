@@ -1,17 +1,17 @@
 import { fiveDays, getWeatherData, today } from './api-service';
+import refs from './refs/';
 
 getWeatherData('chernihiv', today).then(data => {
   markupHomeWeather(data);
 });
 
 export function markupHomeWeather(data) {
-  // console.log(data);
   const temperature = Math.round(data.main.temp);
   const temperatureMin = Math.round(data.main.temp_min);
   const temperatureMax = Math.round(data.main.temp_max);
   const iconCode = data.weather[0].icon;
   const iconUrl = 'http://openweathermap.org/img/w/' + iconCode + '.png';
-  document.querySelector('.home-weather').innerHTML = `
+  refs.homeWeather.innerHTML = `
       <img src="${iconUrl}" class="icon-home-clouds">
       <p class="home-city">${data.name}, ${data.sys.country}</p>
       <div class="home-wrap-degrees">
