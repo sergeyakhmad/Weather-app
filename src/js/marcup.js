@@ -10,7 +10,7 @@ import { cityName } from './favorite-city';
 import { glide } from './glide-settings';
 import { bgImg } from './bg-api';
 
-const nameRequest = arrFavoriteCityName[0] || 'Kiev';
+const nameRequest = arrFavoriteCityName[0] || 'kiev';
 let cityValue = cityName;
 
 const marcupBtn = `<div class="home-buttons">
