@@ -1,8 +1,8 @@
 .quote {
-    width: 280px;
-    color: white;
-    margin: 0 auto;
-
+  width: 280px;
+  color: white;
+  margin: 0 auto;
+  
     @media screen and (min-width: 768px) {
         width: 379px;
         margin-right: 75px;
@@ -15,23 +15,30 @@
         top: 600px; 
     }
 
-    text-align: right;
+  @media screen and (min-width: 1280px) {
+    width: 340px;
+    position: absolute;
+    right: 40px;
+  }
 
-    p {
-        font-size: 14px;
-        line-height: calc(16.8 / 14);
+  text-align: right;
 
-        @media screen and (min-width: 768px) {
-            font-size: 22px;
-            line-height: calc(26.4 / 22);
-        }
+  p {
+    font-size: 14px;
+    line-height: calc(16.8 / 14);
 
         font-style: italic;
         margin-bottom: 15px;
+
     }
 
-    span {
-        font-size: 18px;
-        line-height: calc(21.6 / 18);
-    }
+    font-style: italic;
+    margin-bottom: 15px;
+    margin-top: 44px;
+  }
+
+  span {
+    font-size: 18px;
+    line-height: calc(21.6 / 18);
+  }
 }

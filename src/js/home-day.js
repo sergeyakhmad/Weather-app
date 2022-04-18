@@ -3,35 +3,34 @@ import { fiveDays, getWeatherData, today } from './api-service';
 import refs from './refs/';
 import sprite from '../images/symbol-defs.svg';
 
-getWeatherData('tokyo', today).then(data => {
-  markupHomeDay(data);
-});
+// getWeatherData('Tokyo', today).then(data => {
+//   markupHomeDay(data);
+// });
 
-function markupHomeDay(data) {
-  console.log(data);
+export function markupHomeDay(data) {
   const day = new Date(data.dt * 1000);
   const timezone = data.timezone * 1000;
 
   const currentPlaceTime = convertTimezone(day, timezone);
-
   const numberDay = currentPlaceTime.getDate();
   const weekDay = getNameDayHome(currentPlaceTime);
-
   const sunrise = new Date(data.sys.sunrise * 1000);
   const currentPlaceSunrise = convertTimezone(sunrise, timezone);
-
   const sunset = new Date(data.sys.sunset * 1000);
+  const currentTimeZoneSS = sunset.getTimezoneOffset() * 60 * 1000;
+  const dayUTCss = sunset.getTime() + currentTimeZoneSS;
+  const currentPlaceSunset = new Date(dayUTCss + timezone);
   const currentPlaceSunset = convertTimezone(sunset, timezone);
-
   const sunriseHours = currentPlaceSunrise.getHours();
   const sunriseMinutes = currentPlaceSunrise.getMinutes();
   const sunsetHours = currentPlaceSunset.getHours();
   const sunsetMinutes = currentPlaceSunset.getMinutes();
-
   const month = getNameMonthHome(day);
 
   clock(data);
-  refs.homeDay.innerHTML = `<p class="home-date">${numberDay}<sup>th </sup>${weekDay}</p>
+  return `
+  <div class="home-day home-info-field">
+  <p class="home-date">${numberDay}<sup>th </sup>${weekDay}</p>
       <div class="home-wrap-info">
         <div class="home-wrap-date">
           <p class="home-month">${month}</p>
@@ -53,6 +52,7 @@ function markupHomeDay(data) {
             <p class="home-time">${addLeadingZero(sunsetHours)}:${addLeadingZero(sunsetMinutes)}</p>
           </div>
         </div>
+      </div>
       </div>`;
 }
 
@@ -99,8 +99,11 @@ function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
 
+export let timeId = null;
+
 function clock(data) {
-  setInterval(function () {
+  clearInterval(timeId);
+  timeId = setInterval(function () {
     const day = new Date();
     const timezone = data.timezone * 1000;
     const currentPlaceTime = convertTimezone(day, timezone);

@@ -3,9 +3,8 @@ import refs from './refs';
 import debounce from 'lodash.debounce';
 import { markupFavoriteListCity, markupFavoriteCity } from './functions/markupFavoriteCity';
 
-export const objCity = {
-  name: '',
-};
+export let cityName = '';
+export const arrFavoriteCityName = localStorage.getItem('cityName')
 
 const arrFavoriteCityName = localStorage.getItem('cityName')
   ? JSON.parse(localStorage.getItem('cityName'))
@@ -20,7 +19,7 @@ refs.input.addEventListener(
   'input',
   debounce(e => {
     if (e.target.value === '') return;
-    objCity.name = e.target.value[0].toUpperCase() + e.target.value.slice(1).toLowerCase();
+    cityName = e.target.value[0].toUpperCase() + e.target.value.slice(1).toLowerCase();
     console.log(objCity.name);
   }, 300),
 );
@@ -29,18 +28,18 @@ refs.form.addEventListener('submit', e => {
   e.preventDefault();
   if (refs.input.value === '') return;
 
-  //  делаю запрос и рендер разметки, название города лежит в objCity.name.
+  //  делаю запрос и рендер разметки, название города лежит в cityName.
 });
 
 refs.favoriteBtn.addEventListener('click', e => {
-  if (!objCity.name) return;
+  if (!cityName) return;
   refs.input.value = '';
-  if (arrFavoriteCityName.includes(objCity.name)) return;
+  if (arrFavoriteCityName.includes(cityName)) return;
 
-  arrFavoriteCityName.splice(0, 0, objCity.name);
+  arrFavoriteCityName.splice(0, 0, cityName);
   localStorage.setItem('cityName', JSON.stringify(arrFavoriteCityName));
 
-  markupFavoriteCity(objCity.name);
+  markupFavoriteCity(cityName);
 
   if (arrFavoriteCityName.length > 2 && widthOfUserScreen < 768)
     refs.btnNext.classList.remove('hidden');

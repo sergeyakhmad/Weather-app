@@ -1,6 +1,6 @@
 import Glide from '@glidejs/glide';
 
-export const glideHours = new Glide('.glide', {
+export const glideHours = new Glide('.glide-hours', {
   type: 'slider',
   rewind: false,
   perView: 7,
