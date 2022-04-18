@@ -7,3 +7,4 @@ import './js/home-weather';
 import './js/home-day';
 import './js/five-days';
 import './js/marcup';
+import './js/geolocation';
