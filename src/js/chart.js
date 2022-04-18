@@ -10,16 +10,17 @@ import { changeChartLabel } from './functions/changeChartLabel';
 Chart.defaults.font.family = 'Lato';
 Chart.defaults.font.size = 14;
 Chart.defaults.plugins.legend.position = 'top';
+Chart.defaults.borderColor = 'rgb(255,255,255,0.2)';
 
 //даты прогноза
 const labels = ['Date-1', 'Date-2', 'Date-3', 'Date-4', 'Date-5'];
 
 //значения показателей (температура, влажность, скорость ветра, атм осадки)
 const vaulesArr = [0, 1, 0, -1, 0];
-const temperature = [-20, -3, 0, 2, -1];
-const humidity = [-2, -4, 1, 1, 3];
-const windSpeed = [1, 2, 3, 4, 5];
-const atmPress = [5, 4, 3, 2, 1];
+const temperature = [2, 4, 6, 1, 8];
+const humidity = [66, 70, 63, 67, 83];
+const windSpeed = [2, 6, 5, 8, 12];
+const atmPress = [734, 733, 733, 735, 736];
 
 const dataChart = {
   //даты прогноза
@@ -28,7 +29,7 @@ const dataChart = {
   datasets: [
     {
       label: '— Temperature, C° ',
-      data: vaulesArr,
+      data: temperature,
 
       backgroundColor: '#FF6B09',
       borderColor: '#FF6B09',
@@ -56,13 +57,22 @@ const config = {
       },
       subtitle: {
         display: true,
-        text: 'Value of Indicators',
+        text: 'Value of Indicator',
         color: 'rgba(255, 255, 255, 0.54)',
         position: 'left',
         align: 'center',
       },
     },
 
+    scales: {
+      y: {
+        min: Math.min(...dataChart.datasets[0].data) - 1,
+        max: Math.max(...dataChart.datasets[0].data) + 1,
+        ticks: {
+          stepSize: 1,
+        },
+      },
+    },
     //маштабирование до размера холста
     responsive: true,
     maintainAspectRatio: false,
@@ -84,6 +94,15 @@ export function ChangeChartOption(id) {
           cubicInterpolationMode: 'monotone',
         },
       ];
+      config.options.scales = {
+        y: {
+          min: Math.min(...dataChart.datasets[0].data) - 1,
+          max: Math.max(...dataChart.datasets[0].data) + 1,
+          ticks: {
+            stepSize: 0.5,
+          },
+        },
+      };
       changeChartLabel(id);
       myChart.update();
       break;
@@ -99,6 +118,15 @@ export function ChangeChartOption(id) {
           cubicInterpolationMode: 'monotone',
         },
       ];
+      config.options.scales = {
+        y: {
+          min: Math.min(...dataChart.datasets[0].data) - 1,
+          max: Math.max(...dataChart.datasets[0].data) + 1,
+          ticks: {
+            stepSize: 2,
+          },
+        },
+      };
       changeChartLabel(id);
       myChart.update();
       break;
@@ -115,6 +143,15 @@ export function ChangeChartOption(id) {
           cubicInterpolationMode: 'monotone',
         },
       ];
+      config.options.scales = {
+        y: {
+          min: Math.min(...dataChart.datasets[0].data) - 1,
+          max: Math.max(...dataChart.datasets[0].data) + 1,
+          ticks: {
+            stepSize: 1,
+          },
+        },
+      };
       changeChartLabel(id);
       myChart.update();
       break;
@@ -130,6 +167,15 @@ export function ChangeChartOption(id) {
           cubicInterpolationMode: 'monotone',
         },
       ];
+      config.options.scales = {
+        y: {
+          min: Math.min(...dataChart.datasets[0].data) - 1,
+          max: Math.max(...dataChart.datasets[0].data) + 1,
+          ticks: {
+            stepSize: 1,
+          },
+        },
+      };
       changeChartLabel(id);
       myChart.update();
       break;
