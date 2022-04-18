@@ -5,12 +5,14 @@
 
     @media screen and (min-width: 768px) {
         width: 379px;
+        margin-right: 75px;
     }
 
     @media screen and (min-width: 1280px) {
         width: 340px;
         position: absolute;
         right: 40px;
+        top: 600px; 
     }
 
     text-align: right;
@@ -26,7 +28,6 @@
 
         font-style: italic;
         margin-bottom: 15px;
-        margin-top: 44px;
     }
 
     span {
