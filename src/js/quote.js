@@ -1,9 +1,7 @@
 const quoteMarkup = (quote, author) => {
-    document.querySelector('.home-day').insertAdjacentHTML('beforeend',
-        `<div class="quote">
-            <p>${quote}</p>
-            <span>${author}</span>
-        <div>`);
+    document.querySelector('.quote').insertAdjacentHTML('beforeend',
+        `<p>${quote}</p>
+            <span>${author}</span>`);
 }
 const quote = fetch(`https://api.goprogram.ai/inspiration`).then(response => {
     if (!response.ok) {
