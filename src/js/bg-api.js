@@ -4,7 +4,7 @@ function getRandomNum(min, max) {
 
 async function img(city) {
   return await fetch(
-    `https://api.unsplash.com/search/photos/?client_id=LZvDZOjmJ3YNQFh2j9aXsuN6LDWTFwfPTOC_ddGKNmc&query=${city}&page=1&per_page=10&orientation=landscape`,
+    `https://api.unsplash.com/search/photos/?client_id=LZvDZOjmJ3YNQFh2j9aXsuN6LDWTFwfPTOC_ddGKNmc&query=${city.toLowerCase()}&page=1&per_page=10&orientation=landscape`,
   ).then(res => {
     if (!res.ok) return Promise.reject('404');
     return res.json();
