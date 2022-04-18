@@ -8,6 +8,7 @@ export const quoteMarkup = data => {
         </div>
         `;
 };
+
 export const quote = async () => {
   return await fetch(`https://api.goprogram.ai/inspiration`)
     .then(response => {
