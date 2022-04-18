@@ -20,7 +20,7 @@ export function markupHomeDay(data) {
   const currentTimeZoneSS = sunset.getTimezoneOffset() * 60 * 1000;
   const dayUTCss = sunset.getTime() + currentTimeZoneSS;
   const currentPlaceSunset = new Date(dayUTCss + timezone);
-//   const currentPlaceSunset = convertTimezone(sunset, timezone);
+  //   const currentPlaceSunset = convertTimezone(sunset, timezone);
   const sunriseHours = currentPlaceSunrise.getHours();
   const sunriseMinutes = currentPlaceSunrise.getMinutes();
   const sunsetHours = currentPlaceSunset.getHours();
@@ -69,7 +69,6 @@ function getNameDayHome(date) {
 }
 
 function getNameMonthHome(date) {
-  console.log(date);
   const monthNum = date.getMonth();
   let month = '';
   const months = [
