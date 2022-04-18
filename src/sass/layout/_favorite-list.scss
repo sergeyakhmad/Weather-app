@@ -1,48 +1,17 @@
 .favorite-city {
-  display: flex;
-  justify-content: space-around;
-  width: 280px;
-  margin: 0 auto;
-  position: relative;
+  width: calc(100% - 60px);
+  margin: 12px auto 0;
 
-  @media screen and (min-width: 480px) {
-    width: 500px;
+  @media screen and (min-width: 768px) {
+    width: 400px;
   }
 
-  &__btnPrev,
-  &__btnNext {
-    opacity: 0.5;
-    width: 28px;
-    height: 28px;
-    background-color: #fff;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: opacity 200ms linear;
-    outline: none;
-    position: absolute;
-
-    &:hover,
-    &:hover svg {
-      opacity: 1;
-    }
-  }
-
-  &__btnPrev {
-    left: 0;
-  }
-
-  &__btnNext {
-    right: 0;
+  &__wrap {
+    margin: 0 auto;
   }
 
   &__list {
-    width: 180px;
-
-    @media screen and (min-width: 768px) {
-      width: 380px;
-    }
+    margin: 0 auto;
   }
 
   &__item {
@@ -52,11 +21,10 @@
     margin-right: 5px;
     border-radius: 20px;
     background: rgba(16, 33, 54, 0.5);
-    opacity: 0.7;
 
     &:hover,
     &:focus {
-      opacity: 1;
+      background: rgb(16, 33, 54);
     }
   }
 
@@ -80,5 +48,33 @@
     width: 16px;
     outline: none;
     padding: 0;
+  }
+}
+header {
+  .btnPrev,
+  .btnNext {
+    opacity: 0.5;
+    width: 28px;
+    height: 28px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: opacity 200ms linear;
+    outline: none;
+
+    &:hover,
+    &:hover svg {
+      opacity: 1;
+    }
+  }
+
+  .btnPrev {
+    left: -30px;
+  }
+
+  .btnNext {
+    right: -30px;
   }
 }

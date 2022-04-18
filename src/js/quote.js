@@ -1,22 +1,26 @@
-const quoteMarkup = (quote, author) => {
-  document.querySelector('.home-day').insertAdjacentHTML(
-    'beforeend',
-    `<div class="quote">
-            <p>${quote}</p>
-            <span>${author}</span>
-        <div>`,
-  );
+export const quoteMarkup = data => {
+  return `
+  <div class="quote">
+  <div class="quote">
+            <p>${data.quote}</p>
+            <span>${data.author}</span>
+        <div>
+        </div>
+        `;
 };
-const quote = fetch(`https://api.goprogram.ai/inspiration`)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    return response.json();
-  })
-  .then(data => {
-    quoteMarkup(data.quote, data.author);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+
+export const quote = async () => {
+  return await fetch(`https://api.goprogram.ai/inspiration`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      return data;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};

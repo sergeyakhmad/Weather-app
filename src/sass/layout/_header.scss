@@ -1,4 +1,4 @@
-.header-wrap {
+header {
   padding-top: 30px;
   @media screen and (min-width: 480px) {
     padding-top: 60px;
@@ -8,7 +8,7 @@
   position: relative;
   display: flex;
 
-  width: 280px;
+  min-width: 280px;
   height: 48px;
   margin: 0 auto;
 
@@ -17,7 +17,7 @@
 
   background-color: #fff;
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 768px) {
     width: 500px;
   }
 
@@ -66,4 +66,9 @@
     font-size: 18px;
     line-height: 22px;
   }
+}
+
+.thumb-input__star:hover,
+.thumb-input__star:focus {
+  transform: scale(1.2);
 }

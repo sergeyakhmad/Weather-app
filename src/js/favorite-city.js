@@ -1,14 +1,15 @@
+import { glide } from './glide-settings';
 import refs from './refs';
 import debounce from 'lodash.debounce';
-import { markupFavoriteListCity, markupCity } from './functions/markupFavoriteCity';
-import Siema from 'siema';
+import { markupFavoriteListCity, markupFavoriteCity } from './functions/markupFavoriteCity';
 
-let cityName = '';
-const arrFavoriteCityName = localStorage.getItem('cityName')
+export let cityName = '';
+export const arrFavoriteCityName = localStorage.getItem('cityName')
   ? JSON.parse(localStorage.getItem('cityName'))
   : [];
 
 const widthOfUserScreen = window.innerWidth;
+const num = arrFavoriteCityName.length;
 
 markupFavoriteListCity(arrFavoriteCityName);
 
@@ -17,7 +18,7 @@ refs.input.addEventListener(
   debounce(e => {
     if (e.target.value === '') return;
     cityName = e.target.value[0].toUpperCase() + e.target.value.slice(1).toLowerCase();
-  }, 500),
+  }, 300),
 );
 
 refs.favoriteBtn.addEventListener('click', e => {
@@ -25,97 +26,55 @@ refs.favoriteBtn.addEventListener('click', e => {
   refs.input.value = '';
   if (arrFavoriteCityName.includes(cityName)) return;
 
-  arrFavoriteCityName.push(cityName);
+  arrFavoriteCityName.splice(0, 0, cityName);
   localStorage.setItem('cityName', JSON.stringify(arrFavoriteCityName));
 
-  const newCity = document.createElement('div');
-  newCity.innerHTML = markupCity(cityName);
-  mySiema.append(newCity);
+  markupFavoriteCity(cityName);
 
-  if (widthOfUserScreen < 768 && arrFavoriteCityName.length > 2) {
-    refs.btnNext.hidden = false;
-  }
+  if (arrFavoriteCityName.length > 2 && widthOfUserScreen < 768)
+    refs.btnNext.classList.remove('hidden');
 
-  if (widthOfUserScreen >= 768 && arrFavoriteCityName.length > 4) {
-    refs.btnNext.hidden = false;
-  }
+  if (arrFavoriteCityName.length > 4 && widthOfUserScreen >= 768)
+    refs.btnNext.classList.remove('hidden');
+
+  glide.mount();
 });
 
-refs.favoriteCityList.addEventListener('click', e => {
-  if (e.target.nodeName === 'BUTTON') {
-    const cityName = e.path[1].childNodes[1].textContent;
-    const idxForRemove = arrFavoriteCityName.indexOf(cityName);
-
-    mySiema.remove(idxForRemove);
-
-    arrFavoriteCityName.splice(idxForRemove, 1);
-    localStorage.setItem('cityName', JSON.stringify(arrFavoriteCityName));
-  }
-
-  if (e.target.nodeName === 'P') {
-    refs.input.value = e.target.textContent;
-    // делаем запрос
-  }
-
-  if (widthOfUserScreen < 768 && arrFavoriteCityName.length <= 2) {
-    refs.btnNext.hidden = true;
-    refs.btnPrev.hidden = true;
-  }
-
-  if (widthOfUserScreen > 768 && arrFavoriteCityName.length <= 4) {
-    refs.btnNext.hidden = true;
-    refs.btnPrev.hidden = true;
-  }
-});
-
-const mySiema = new Siema({
-  selector: '.favorite-city__list',
-  perPage: {
-    320: 2,
-    768: 4,
-  },
-  duration: 200,
-  draggable: false,
-  multipleDrag: false,
-  loop: false,
-  onChange: () => {
-    console.log(mySiema.currentSlide);
-  },
-});
-
-refs.btnNext.addEventListener('click', () => {
-  mySiema.next();
-  if (mySiema.currentSlide > 0) {
-    refs.btnPrev.hidden = false;
-  }
-
-  if (mySiema.currentSlide === 0) {
-    refs.btnPrev.hidden = true;
-  }
-
-  if (widthOfUserScreen < 768 && mySiema.currentSlide === arrFavoriteCityName.length - 2) {
-    refs.btnNext.hidden = true;
-  }
-
-  if (widthOfUserScreen >= 768 && mySiema.currentSlide === arrFavoriteCityName.length - 4) {
-    refs.btnNext.hidden = true;
-  }
-});
-
-refs.btnPrev.addEventListener('click', () => {
-  mySiema.prev();
-  refs.btnNext.hidden = false;
-  if (mySiema.currentSlide === 0) {
-    refs.btnPrev.hidden = true;
-  }
-});
-
-refs.btnPrev.hidden = true;
-
-if (widthOfUserScreen < 768 && arrFavoriteCityName.length <= 2) {
-  refs.btnNext.hidden = true;
+if ((widthOfUserScreen < 768 && num > 2) || (widthOfUserScreen >= 768 && num > 4)) {
+  refs.btnNext.classList.remove('hidden');
 }
 
-if (widthOfUserScreen > 768 && arrFavoriteCityName.length <= 4) {
-  refs.btnNext.hidden = true;
-}
+glide.on('run.after', function () {
+  const num = arrFavoriteCityName.length;
+  const idx = glide.index;
+
+  if (idx === 0) {
+    refs.btnPrev.classList.add('hidden');
+  } else refs.btnPrev.classList.remove('hidden');
+
+  if (widthOfUserScreen >= 768) {
+    if (idx >= num - 4) {
+      refs.btnNext.classList.add('hidden');
+    } else refs.btnNext.classList.remove('hidden');
+  }
+
+  if (widthOfUserScreen < 768) {
+    if (idx >= num - 2) {
+      refs.btnNext.classList.add('hidden');
+    } else refs.btnNext.classList.remove('hidden');
+  }
+});
+
+refs.btnNext.addEventListener('click', e => {
+  e.stopImmediatePropagation();
+
+  glide.go('>');
+});
+
+refs.btnPrev.addEventListener('click', e => {
+  e.stopImmediatePropagation();
+
+  glide.go('<');
+});
+
+glide.mount();
