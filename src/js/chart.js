@@ -1,4 +1,5 @@
 import Chart from 'chart.js/auto';
+//test npm CI
 
 //Global options
 Chart.defaults.font.family = 'Lato';
