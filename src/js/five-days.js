@@ -8,8 +8,6 @@ import { marcupToday } from './marcup';
 export function marcupDays(dataDay, dataDays) {
   refs.homeContainer.innerHTML = '';
 
-  getNameDay(Number(dataDays.daily.slice(0, 5)[0].dt + '000'));
-
   const marcup = `
   <div class="five-days__header">
   <span class="five-days__city">${dataDay.city.name}, ${dataDay.city.country}</span>
@@ -75,14 +73,11 @@ export function marcupMore(e, data) {
   if (e.target.nodeName !== 'BUTTON') return;
 
   const moreNode = document.querySelector('.five-days__more-container');
-
   refs.fiveDaysNode.classList.add('animation');
 
-  const day = e.target.dataset.dt;
   let positionDate = 0;
-
   for (const item of data.list) {
-    if (item.dt_txt.slice(8, 10) === day) {
+    if (item.dt_txt.slice(8, 10) === e.target.dataset.dt) {
       break;
     }
     positionDate++;
