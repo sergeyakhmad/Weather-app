@@ -1,4 +1,4 @@
-import Glide from '@glidejs/glide';
+import { glide } from './glide-settings';
 import refs from './refs';
 import debounce from 'lodash.debounce';
 import { markupFavoriteListCity, markupFavoriteCity } from './functions/markupFavoriteCity';
@@ -18,16 +18,8 @@ refs.input.addEventListener(
   debounce(e => {
     if (e.target.value === '') return;
     cityName = e.target.value[0].toUpperCase() + e.target.value.slice(1).toLowerCase();
-    console.log(objCity.name);
   }, 300),
 );
-
-refs.form.addEventListener('submit', e => {
-  e.preventDefault();
-  if (refs.input.value === '') return;
-
-  //  делаю запрос и рендер разметки, название города лежит в cityName.
-});
 
 refs.favoriteBtn.addEventListener('click', e => {
   if (!cityName) return;
@@ -46,40 +38,6 @@ refs.favoriteBtn.addEventListener('click', e => {
     refs.btnNext.classList.remove('hidden');
 
   glide.mount();
-});
-
-refs.favoriteCityList.addEventListener('click', e => {
-  if (e.target.nodeName === 'BUTTON') {
-    const cityName = e.path[1].childNodes[1].textContent;
-    const idxForRemove = arrFavoriteCityName.indexOf(cityName);
-
-    arrFavoriteCityName.splice(idxForRemove, 1);
-    localStorage.setItem('cityName', JSON.stringify(arrFavoriteCityName));
-
-    e.target.closest('li').remove();
-    glide.mount();
-  }
-
-  if (e.target.nodeName === 'P') {
-    refs.input.value = e.target.textContent;
-    cityName = e.target.textContent;
-
-    //  делаю запрос и рендер разметки, название города лежит в cityName.
-  }
-});
-
-const glide = new Glide('.glide', {
-  type: 'slider',
-  startAt: 0,
-  focusAt: 0,
-  perView: 4,
-  rewind: false,
-  bound: true,
-  breakpoints: {
-    768: {
-      perView: 2,
-    },
-  },
 });
 
 if ((widthOfUserScreen < 768 && num > 2) || (widthOfUserScreen >= 768 && num > 4)) {

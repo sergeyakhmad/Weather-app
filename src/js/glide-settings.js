@@ -41,3 +41,17 @@ export const glideDays = new Glide('.glideDays', {
     },
   },
 });
+
+export const glide = new Glide('.glide', {
+  type: 'slider',
+  startAt: 0,
+  focusAt: 0,
+  perView: 4,
+  rewind: false,
+  bound: true,
+  breakpoints: {
+    768: {
+      perView: 2,
+    },
+  },
+});

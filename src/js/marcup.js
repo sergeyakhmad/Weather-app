@@ -6,8 +6,10 @@ import { quoteMarkup, quote } from './quote';
 import refs from './refs/';
 import { arrFavoriteCityName } from './favorite-city';
 import { cityName } from './favorite-city';
+import { glide } from './glide-settings';
 
 const nameRequest = arrFavoriteCityName[0] || 'Kiev';
+let cityValue = cityName;
 
 const marcupBtn = `<div class="home-buttons">
 <button class="home-today-btn home-btn" disabled>TODAY</button>
@@ -15,7 +17,7 @@ const marcupBtn = `<div class="home-buttons">
 </div>`;
 
 export async function marcupFiveDays() {
-  const data = await getWeatherData(cityName || nameRequest, 'forecast');
+  const data = await getWeatherData(cityValue || nameRequest, 'forecast');
   const data2 = await oneCallApi(data.city.coord.lat, data.city.coord.lon);
 
   clearInterval(timeId);
@@ -23,13 +25,13 @@ export async function marcupFiveDays() {
 }
 
 export async function marcupSectionMore(e) {
-  const data = await getWeatherData(cityName || nameRequest, 'forecast');
+  const data = await getWeatherData(cityValue || nameRequest, 'forecast');
 
   marcupMore(e, data);
 }
 
 export async function marcupToday() {
-  const weatherData = await getWeatherData(cityName || nameRequest, 'weather');
+  const weatherData = await getWeatherData(cityValue || nameRequest, 'weather');
   const quoteData = await quote();
 
   const arr = [
@@ -47,12 +49,36 @@ refs.form.addEventListener('submit', e => {
   e.preventDefault();
   if (refs.input.value === '') return;
 
+  cityValue = refs.input.value;
   if (document.querySelector('.home-days-btn')?.hasAttribute('disabled')) {
     marcupFiveDays();
   } else {
     marcupToday();
   }
   refs.input.value = '';
+});
+
+refs.favoriteCityList.addEventListener('click', e => {
+  if (e.target.nodeName === 'BUTTON') {
+    const name = e.path[1].childNodes[1].textContent;
+    const idxForRemove = arrFavoriteCityName.indexOf(name);
+
+    arrFavoriteCityName.splice(idxForRemove, 1);
+    localStorage.setItem('cityName', JSON.stringify(arrFavoriteCityName));
+
+    e.target.closest('li').remove();
+    glide.mount();
+  }
+
+  if (e.target.nodeName === 'P') {
+    cityValue = e.target.textContent;
+
+    if (document.querySelector('.home-days-btn')?.hasAttribute('disabled')) {
+      marcupFiveDays();
+    } else {
+      marcupToday();
+    }
+  }
 });
 
 marcupToday();

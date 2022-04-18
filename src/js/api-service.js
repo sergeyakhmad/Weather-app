@@ -21,3 +21,4 @@ export async function oneCallApi(lat, lon) {
     return res.json();
   });
 }
+
