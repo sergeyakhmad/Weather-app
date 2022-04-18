@@ -9,10 +9,11 @@ export default {
   fiveDaysNode: document.querySelector('.five-days-container'),
   btnDaysNode: document.querySelector('.home-days-btn'),
   btnContainerNode: document.querySelector('.home-buttons'),
-  btnShowChartNode: document.querySelector('.show-chart__wrap'),
-  ChartNode: document.querySelector('.chart'),
-  btnHideChartNode: document.querySelector('.hide-chart__wrap-btn'),
   homeWeather: document.querySelector('.home-weather'),
   homeDay: document.querySelector('.home-day'),
   favoriteCityList: document.querySelector('.glide__slides'),
+  //chart nodes
+  ChartNode: document.querySelector('.chart'),
+  btnShowChartNode: document.querySelector('.show-chart__wrap'),
+  btnHideChartNode: document.querySelector('.hide-chart__wrap-btn'),
 };

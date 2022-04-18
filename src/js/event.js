@@ -1,5 +1,5 @@
 import refs from './refs';
-import { onChartOption } from './chart';
+import { ChangeChartOption } from './chart';
 
 // при нажатии на кнопку Show Chart отображаем график
 refs.btnShowChartNode.addEventListener('click', () => {
@@ -16,4 +16,4 @@ refs.btnHideChartNode.addEventListener('click', () => {
 // смена данных графика по нажатию на ярлык графика
 document
   .querySelector('.chart-labels__list')
-  .addEventListener('click', event => onChartOption(event.target.parentNode.id));
+  .addEventListener('click', event => ChangeChartOption(event.target.parentNode.id));
