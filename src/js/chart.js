@@ -1,5 +1,10 @@
+import { oneCallApi } from './api-service';
 import Chart from 'chart.js/auto';
-//test npm CI
+import { changeChartLabel } from './functions/changeChartLabel';
+
+//Data from API
+// KIEV
+// console.log(oneCallApi(30.5167, 50.4333));
 
 //Global options
 Chart.defaults.font.family = 'Lato';
@@ -41,7 +46,6 @@ const config = {
       display: true,
       align: 'start',
       labels: {
-        //цвет заголовков показателей
         color: '#ffffff',
       },
     },
@@ -49,10 +53,6 @@ const config = {
     plugins: {
       legend: {
         display: false,
-        align: 'start',
-        labels: {
-          color: '#ffffff',
-        },
       },
       subtitle: {
         display: true,
@@ -71,11 +71,9 @@ const config = {
 
 const myChart = new Chart(document.getElementById('myChart'), config);
 
-export function onChartOption(id) {
-  console.log(id);
+export function ChangeChartOption(id) {
   switch (id) {
     case 'temperature':
-      console.log('temp');
       dataChart.datasets = [
         {
           label: '— Temperature, C° ',
@@ -86,10 +84,11 @@ export function onChartOption(id) {
           cubicInterpolationMode: 'monotone',
         },
       ];
+      changeChartLabel(id);
+      myChart.update();
       break;
 
     case 'humidity':
-      console.log('hum');
       dataChart.datasets = [
         {
           label: '— Humidity, %',
@@ -100,10 +99,11 @@ export function onChartOption(id) {
           cubicInterpolationMode: 'monotone',
         },
       ];
+      changeChartLabel(id);
+      myChart.update();
       break;
 
     case 'wind':
-      console.log('www');
       dataChart.datasets = [
         {
           id: 'wind',
@@ -115,10 +115,11 @@ export function onChartOption(id) {
           cubicInterpolationMode: 'monotone',
         },
       ];
+      changeChartLabel(id);
+      myChart.update();
       break;
 
     case 'atmospherePressure':
-      console.log('444');
       dataChart.datasets = [
         {
           label: '— Atmosphere Pressure, m/m',
@@ -129,6 +130,8 @@ export function onChartOption(id) {
           cubicInterpolationMode: 'monotone',
         },
       ];
+      changeChartLabel(id);
+      myChart.update();
       break;
 
     default:

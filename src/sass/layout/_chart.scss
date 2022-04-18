@@ -142,6 +142,10 @@
     flex-direction: row;
   }
 }
+
+.selected {
+  text-decoration: line-through;
+}
 .chart-labels__item {
   display: flex;
   align-items: center;
