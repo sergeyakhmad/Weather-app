@@ -23,7 +23,7 @@ export function bgImg(city) {
       .then(res => res[2])
       .then(res => res[1])
       .then(res => res.map(elem => elem.urls.regular))
-      // .then(console.log)
+      .then(console.log)
       .then(data => {
         document.querySelector('body').style.backgroundImage = `url(${data[getRandomNum(1, 10)]})`;
         localStorage.setItem(city, data);
