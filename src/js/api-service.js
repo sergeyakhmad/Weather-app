@@ -1,6 +1,6 @@
-const jsondb = require('../config.json');
-const API_KEY = jsondb.API_KEY;
-// const API_KEY = '428ed231089210f0f91b7ff93c680cd1';
+// const jsondb = require('../config.json');
+// const API_KEY = jsondb.API_KEY;
+const API_KEY = '428ed231089210f0f91b7ff93c680cd1';
 export const today = 'weather';
 export const fiveDays = 'forecast';
 
