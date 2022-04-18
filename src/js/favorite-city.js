@@ -5,8 +5,6 @@ import { markupFavoriteListCity, markupFavoriteCity } from './functions/markupFa
 
 export let cityName = '';
 export const arrFavoriteCityName = localStorage.getItem('cityName')
-
-const arrFavoriteCityName = localStorage.getItem('cityName')
   ? JSON.parse(localStorage.getItem('cityName'))
   : [];
 
