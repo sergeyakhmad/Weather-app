@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@glidejs/glide": "^3.5.2",
-    "lodash.debounce": "^4.0.8",
-    "siema": "^1.5.1"
+    "chart.js": "^3.7.1",
+    "lodash.debounce": "^4.0.8"
   }
 }
