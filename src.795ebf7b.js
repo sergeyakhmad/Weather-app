@@ -45,4 +45,4 @@ module.exports="/Weather-app/symbol-defs.abac8a71.svg";
 },{"chart.js/auto":"cfL2"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/event"),require("./js/favorite-city"),require("./js/quote"),require("./js/bg-api"),require("./js/home-weather"),require("./js/home-day"),require("./js/five-days"),require("./js/chart"),require("./js/marcup");
 },{"./sass/main.scss":"clu1","./js/event":"lDTy","./js/favorite-city":"uEyK","./js/quote":"tj8B","./js/bg-api":"r1Wn","./js/home-weather":"S7J5","./js/home-day":"v9kD","./js/five-days":"tPwL","./js/chart":"TEwb","./js/marcup":"elso"}]},{},["Focm"], null)
-//# sourceMappingURL=/Weather-app/src.98a1be9f.js.map
+//# sourceMappingURL=/Weather-app/src.795ebf7b.js.map
