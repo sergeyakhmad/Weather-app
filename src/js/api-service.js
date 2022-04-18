@@ -1,6 +1,6 @@
 // const jsondb = require('../config.json');
-// const API_KEY = jsondb.API_KEY;
-const API_KEY = '428ed231089210f0f91b7ff93c680cd1';
+// const API_KEY = jsondb.API_KEY;428ed231089210f0f91b7ff93c680cd1
+const API_KEY = '9c081f3513903579de43b61708675364';
 export const today = 'weather';
 export const fiveDays = 'forecast';
 
@@ -22,4 +22,4 @@ export function oneCallApi(lat, lon) {
   });
 }
 
-oneCallApi(50.4333, 30.5167).then(console.log);
+// oneCallApi(50.4333, 30.5167).then(console.log);

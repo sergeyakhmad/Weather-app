@@ -9,4 +9,7 @@ export default {
   fiveDaysNode: document.querySelector('.five-days-container'),
   btnDaysNode: document.querySelector('.home-days-btn'),
   btnContainerNode: document.querySelector('.home-buttons'),
+  btnShowChartNode: document.querySelector('.show-chart__wrap'),
+  ChartNode: document.querySelector('.chart'),
+  btnHideChartNode: document.querySelector('.hide-chart__wrap-btn'),
 };
