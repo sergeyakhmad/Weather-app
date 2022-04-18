@@ -1,3 +1,4 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { getWeatherData, oneCallApi } from './api-service';
 import { markupHomeWeather } from './home-weather';
 import { markupHomeDay, timeId } from './home-day';
@@ -7,6 +8,7 @@ import refs from './refs/';
 import { arrFavoriteCityName } from './favorite-city';
 import { cityName } from './favorite-city';
 import { glide } from './glide-settings';
+import { bgImg } from './bg-api';
 
 const nameRequest = arrFavoriteCityName[0] || 'Kiev';
 let cityValue = cityName;
@@ -17,11 +19,16 @@ const marcupBtn = `<div class="home-buttons">
 </div>`;
 
 export async function marcupFiveDays() {
-  const data = await getWeatherData(cityValue || nameRequest, 'forecast');
-  const data2 = await oneCallApi(data.city.coord.lat, data.city.coord.lon);
+  try {
+    const data = await getWeatherData(cityValue || nameRequest, 'forecast');
+    const data2 = await oneCallApi(data.city.coord.lat, data.city.coord.lon);
 
-  clearInterval(timeId);
-  marcupDays(data, data2);
+    clearInterval(timeId);
+    marcupDays(data, data2);
+    bgImg(cityValue || nameRequest);
+  } catch (err) {
+    Notify.info('Invalid country name');
+  }
 }
 
 export async function marcupSectionMore(e) {
@@ -31,18 +38,23 @@ export async function marcupSectionMore(e) {
 }
 
 export async function marcupToday() {
-  const weatherData = await getWeatherData(cityValue || nameRequest, 'weather');
-  const quoteData = await quote();
+  try {
+    const weatherData = await getWeatherData(cityValue || nameRequest, 'weather');
+    const quoteData = await quote();
 
-  const arr = [
-    markupHomeWeather(weatherData),
-    marcupBtn,
-    markupHomeDay(weatherData),
-    quoteMarkup(quoteData),
-  ];
-  document.querySelector('.five-days-container').innerHTML = '';
-  refs.homeContainer.innerHTML = arr.join('');
-  document.querySelector('.home-days-btn').addEventListener('click', marcupFiveDays);
+    const arr = [
+      markupHomeWeather(weatherData),
+      marcupBtn,
+      markupHomeDay(weatherData),
+      quoteMarkup(quoteData),
+    ];
+    document.querySelector('.five-days-container').innerHTML = '';
+    refs.homeContainer.innerHTML = arr.join('');
+    document.querySelector('.home-days-btn').addEventListener('click', marcupFiveDays);
+    bgImg(cityValue || nameRequest);
+  } catch (err) {
+    Notify.info('Invalid country name');
+  }
 }
 
 refs.form.addEventListener('submit', e => {
@@ -50,6 +62,7 @@ refs.form.addEventListener('submit', e => {
   if (refs.input.value === '') return;
 
   cityValue = refs.input.value;
+
   if (document.querySelector('.home-days-btn')?.hasAttribute('disabled')) {
     marcupFiveDays();
   } else {
@@ -72,7 +85,7 @@ refs.favoriteCityList.addEventListener('click', e => {
 
   if (e.target.nodeName === 'P') {
     cityValue = e.target.textContent;
-
+    bgImg(cityValue);
     if (document.querySelector('.home-days-btn')?.hasAttribute('disabled')) {
       marcupFiveDays();
     } else {
@@ -82,3 +95,4 @@ refs.favoriteCityList.addEventListener('click', e => {
 });
 
 marcupToday();
+bgImg(cityValue || nameRequest);
