@@ -80,5 +80,4 @@ export function getNameMounth(time) {
     default:
       return;
   }
-  return mounth;
 }
