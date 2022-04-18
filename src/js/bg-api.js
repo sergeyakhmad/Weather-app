@@ -35,5 +35,5 @@ export function bgImg(city) {
         document.querySelector('body').style.backgroundImage = `url(${data[getRandomNum(1, 10)]})`;
         localStorage.setItem(city, data);
       })
-      .catch(err => console.log('NE OK'));
+      .catch(err => console.log(err));
 }
