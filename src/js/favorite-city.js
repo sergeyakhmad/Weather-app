@@ -62,9 +62,9 @@ refs.favoriteCityList.addEventListener('click', e => {
 
   if (e.target.nodeName === 'P') {
     refs.input.value = e.target.textContent;
-    objCity.name = e.target.textContent;
+    cityName = e.target.textContent;
 
-    //  делаю запрос и рендер разметки, название города лежит в objCity.name.
+    //  делаю запрос и рендер разметки, название города лежит в cityName.
   }
 });
 
