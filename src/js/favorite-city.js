@@ -3,8 +3,8 @@ import refs from './refs';
 import debounce from 'lodash.debounce';
 import { markupFavoriteListCity } from './functions/markupFavoriteCity';
 
-let cityName = '';
-const arrFavoriteCityName = localStorage.getItem('cityName')
+export let cityName = '';
+export const arrFavoriteCityName = localStorage.getItem('cityName')
   ? JSON.parse(localStorage.getItem('cityName'))
   : [];
 

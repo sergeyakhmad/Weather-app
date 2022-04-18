@@ -3,12 +3,12 @@ import { fiveDays, getWeatherData, today } from './api-service';
 import refs from './refs/';
 import sprite from '../images/symbol-defs.svg';
 
-getWeatherData('Tokyo', today).then(data => {
-  markupHomeDay(data);
-});
+// getWeatherData('Tokyo', today).then(data => {
+//   markupHomeDay(data);
+// });
 
-function markupHomeDay(data) {
-  console.log(data);
+export function markupHomeDay(data) {
+  // console.log(data);
   const day = new Date(data.dt * 1000);
 
   const numberDay = day.getDate();
@@ -16,7 +16,7 @@ function markupHomeDay(data) {
 
   const sunrise = new Date(data.sys.sunrise * 1000);
 
-  console.log(sunrise);
+  // console.log(sunrise);
 
   const currentTimeZoneSR = sunrise.getTimezoneOffset() * 60 * 1000;
   const dayUTCsr = sunrise.getTime() + currentTimeZoneSR;
@@ -29,7 +29,7 @@ function markupHomeDay(data) {
   // const timezone = data.timezone * 1000;
   const currentPlaceSunset = new Date(dayUTCss + timezone);
 
-  console.log(sunset.getTime());
+  // console.log(sunset.getTime());
 
   const sunriseHours = currentPlaceSunrise.getHours();
   const sunriseMinutes = currentPlaceSunrise.getMinutes();
@@ -39,7 +39,9 @@ function markupHomeDay(data) {
   const month = getNameMonthHome(day);
 
   clock(data);
-  refs.homeDay.innerHTML = `<p class="home-date">${numberDay}<sup>th </sup>${weekDay}</p>
+  return `
+  <div class="home-day home-info-field">
+  <p class="home-date">${numberDay}<sup>th </sup>${weekDay}</p>
       <div class="home-wrap-info">
         <div class="home-wrap-date">
           <p class="home-month">${month}</p>
@@ -61,6 +63,7 @@ function markupHomeDay(data) {
             <p class="home-time">${addLeadingZero(sunsetHours)}:${addLeadingZero(sunsetMinutes)}</p>
           </div>
         </div>
+      </div>
       </div>`;
 }
 
@@ -106,8 +109,11 @@ function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
 
+export let timeId = null;
+
 function clock(data) {
-  setInterval(function () {
+  clearInterval(timeId);
+  timeId = setInterval(function () {
     const day = new Date();
 
     // console.log(day);
