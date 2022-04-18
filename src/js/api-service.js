@@ -22,4 +22,4 @@ export function oneCallApi(lat, lon) {
   });
 }
 
-oneCallApi(50.4333, 30.5167).then(console.log);
+// oneCallApi(50.4333, 30.5167).then(console.log);
