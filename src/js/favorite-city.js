@@ -1,12 +1,15 @@
-import Glide from '@glidejs/glide';
+import { glide } from './glide-settings';
 import refs from './refs';
 import debounce from 'lodash.debounce';
-import { markupFavoriteListCity } from './functions/markupFavoriteCity';
+import { markupFavoriteListCity, markupFavoriteCity } from './functions/markupFavoriteCity';
 
-let cityName = '';
-const arrFavoriteCityName = localStorage.getItem('cityName')
+export let cityName = '';
+export const arrFavoriteCityName = localStorage.getItem('cityName')
   ? JSON.parse(localStorage.getItem('cityName'))
   : [];
+
+const widthOfUserScreen = window.innerWidth;
+const num = arrFavoriteCityName.length;
 
 markupFavoriteListCity(arrFavoriteCityName);
 
@@ -15,56 +18,63 @@ refs.input.addEventListener(
   debounce(e => {
     if (e.target.value === '') return;
     cityName = e.target.value[0].toUpperCase() + e.target.value.slice(1).toLowerCase();
-  }, 500),
+  }, 300),
 );
-
-refs.form.addEventListener('submit', e => {
-  e.preventDefault();
-  if (refs.input.value === '') return;
-
-  //  запрос на ip и делаю разметку;
-});
 
 refs.favoriteBtn.addEventListener('click', e => {
   if (!cityName) return;
   refs.input.value = '';
   if (arrFavoriteCityName.includes(cityName)) return;
 
-  arrFavoriteCityName.push(cityName);
+  arrFavoriteCityName.splice(0, 0, cityName);
   localStorage.setItem('cityName', JSON.stringify(arrFavoriteCityName));
-  markupFavoriteListCity(arrFavoriteCityName);
+
+  markupFavoriteCity(cityName);
+
+  if (arrFavoriteCityName.length > 2 && widthOfUserScreen < 768)
+    refs.btnNext.classList.remove('hidden');
+
+  if (arrFavoriteCityName.length > 4 && widthOfUserScreen >= 768)
+    refs.btnNext.classList.remove('hidden');
+
   glide.mount();
 });
 
-refs.favoriteCityList.addEventListener('click', e => {
-  if (e.target.nodeName === 'BUTTON') {
-    const cityName = e.path[1].childNodes[1].textContent;
-    const idxForRemove = arrFavoriteCityName.indexOf(cityName);
+if ((widthOfUserScreen < 768 && num > 2) || (widthOfUserScreen >= 768 && num > 4)) {
+  refs.btnNext.classList.remove('hidden');
+}
 
-    arrFavoriteCityName.splice(idxForRemove, 1);
-    localStorage.setItem('cityName', JSON.stringify(arrFavoriteCityName));
-    markupFavoriteListCity(arrFavoriteCityName);
-    glide.mount();
+glide.on('run.after', function () {
+  const num = arrFavoriteCityName.length;
+  const idx = glide.index;
+
+  if (idx === 0) {
+    refs.btnPrev.classList.add('hidden');
+  } else refs.btnPrev.classList.remove('hidden');
+
+  if (widthOfUserScreen >= 768) {
+    if (idx >= num - 4) {
+      refs.btnNext.classList.add('hidden');
+    } else refs.btnNext.classList.remove('hidden');
   }
 
-  if (e.target.nodeName === 'P') {
-    refs.input.value = e.target.textContent;
-    // делаем запрос
+  if (widthOfUserScreen < 768) {
+    if (idx >= num - 2) {
+      refs.btnNext.classList.add('hidden');
+    } else refs.btnNext.classList.remove('hidden');
   }
 });
 
-const glide = new Glide('.glide', {
-  type: 'slider',
-  startAt: 0,
-  focusAt: 0,
-  perView: 4,
-  rewind: false,
-  bound: true,
-  breakpoints: {
-    768: {
-      perView: 2,
-    },
-  },
+refs.btnNext.addEventListener('click', e => {
+  e.stopImmediatePropagation();
+
+  glide.go('>');
+});
+
+refs.btnPrev.addEventListener('click', e => {
+  e.stopImmediatePropagation();
+
+  glide.go('<');
 });
 
 glide.mount();

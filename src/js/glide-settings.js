@@ -1,6 +1,6 @@
 import Glide from '@glidejs/glide';
 
-export const glideHours = new Glide('.glide', {
+export const glideHours = new Glide('.glide-hours', {
   type: 'slider',
   rewind: false,
   perView: 7,
@@ -38,6 +38,20 @@ export const glideDays = new Glide('.glideDays', {
       swipeThreshold: 80,
       dragThreshold: 120,
       perView: 3,
+    },
+  },
+});
+
+export const glide = new Glide('.glide', {
+  type: 'slider',
+  startAt: 0,
+  focusAt: 0,
+  perView: 4,
+  rewind: false,
+  bound: true,
+  breakpoints: {
+    768: {
+      perView: 2,
     },
   },
 });

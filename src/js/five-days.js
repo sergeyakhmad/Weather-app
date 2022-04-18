@@ -1,27 +1,11 @@
-import { getWeatherData, oneCallApi } from './api-service';
+import { marcupSectionMore } from './marcup';
 import { getNameDay, getNumberDay, getNameMounth } from './date';
 import { glideDays, glideHours } from './glide-settings';
 import sprite from '../images/symbol-defs.svg';
 import refs from './refs/';
+import { marcupToday } from './marcup';
 
-refs.btnDaysNode.addEventListener('click', handleClick);
-
-async function handleClick() {
-  const data = await getWeatherData('paris', 'forecast');
-  const data2 = await oneCallApi(data.city.coord.lat, data.city.coord.lon);
-
-  marcup(data, data2);
-}
-
-async function handleClickBtnMore(e) {
-  const data = await getWeatherData('paris', 'forecast');
-
-  marcupMore(e, data);
-}
-
-function marcup(dataDay, dataDays) {
-  refs.btnContainerNode.classList.remove('today');
-  refs.btnContainerNode.classList.add('days');
+export function marcupDays(dataDay, dataDays) {
   refs.homeContainer.innerHTML = '';
 
   getNameDay(Number(dataDays.daily.slice(0, 5)[0].dt + '000'));
@@ -30,7 +14,7 @@ function marcup(dataDay, dataDays) {
   <div class="five-days__header">
   <span class="five-days__city">${dataDay.city.name}, ${dataDay.city.country}</span>
   <div>
-    <button class="home-today-btn home-btn">TODAY</button>
+    <button class="home-today-btn home-btn ">TODAY</button>
     <button class="home-days-btn home-btn" disabled>5 DAYS</button>
   </div>
   </div>
@@ -42,7 +26,7 @@ function marcup(dataDay, dataDays) {
   ${dataDays.daily
     .slice(0, 5)
     .map(
-      day =>
+      (day, index) =>
         `<li class="five-days__item glide__slide">
         <span class="five-days__day">${getNameDay(day.dt)}</span>
         <span class="five-days__date">${getNumberDay(day.dt)} ${getNameMounth(day.dt)}</span>
@@ -59,7 +43,9 @@ function marcup(dataDay, dataDays) {
         <span class="five-days__temp">${Math.round(day.temp.max)}&deg;</span>
         </div>
         </div>
-        <button class="five-days__btn-more" data-index="${getNumberDay(day.dt)}">more info</button>
+        <button class="five-days__btn-more" data-index=${index} data-dt="${getNumberDay(
+          day.dt,
+        )}">more info</button>
         </li>`,
     )
     .join('')}
@@ -73,22 +59,26 @@ function marcup(dataDay, dataDays) {
   <div class="five-days__more-container"></div>
   </div>`;
 
-  refs.fiveDaysNode.insertAdjacentHTML('beforeend', marcup);
+  refs.fiveDaysNode.innerHTML = marcup;
 
   const fiveDaysNodeList = document.querySelector('.five-days__list');
-  fiveDaysNodeList.addEventListener('click', handleClickBtnMore);
+  fiveDaysNodeList.addEventListener('click', marcupSectionMore);
 
   glideDays.mount();
+
+  document.querySelector('.home-today-btn').addEventListener('click', () => {
+    marcupToday();
+  });
 }
 
-function marcupMore(e, data) {
+export function marcupMore(e, data) {
   if (e.target.nodeName !== 'BUTTON') return;
 
   const moreNode = document.querySelector('.five-days__more-container');
 
   refs.fiveDaysNode.classList.add('animation');
 
-  const day = e.target.dataset.index;
+  const day = e.target.dataset.dt;
   let positionDate = 0;
 
   for (const item of data.list) {
@@ -99,7 +89,7 @@ function marcupMore(e, data) {
   }
 
   const marcup = `
-  <div class="glide">
+  <div class="glide-hours">
   <div class="glide__track" data-glide-el="track">
   <ul class="five-days__list glide__slides">
 ${data.list
@@ -154,6 +144,16 @@ ${data.list
 
 
 `;
+
+  const list = document.querySelector('.five-days__list').children;
+
+  for (let i = 0; i < list.length; i++) {
+    if (i === Number(e.target.dataset.index)) {
+      list[i].classList.add('active');
+    } else {
+      list[i].classList.remove('active');
+    }
+  }
 
   setTimeout(() => {
     moreNode.classList.add('five-days__more-container--margin');
