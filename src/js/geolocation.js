@@ -8,7 +8,6 @@ async function success(lat, lon) {
         .then(res => res[3])
         .then(res => res[1])
         .then(res => {
-            console.log(res[0].components);
             if (res[0].components) refs.input.value = res[0].components.city ? res[0].components.city : res[0].components.state.split(' ')[0];
             else alert(`We are don't found your location!!!`);
         });
@@ -20,4 +19,5 @@ document.querySelector('#search').addEventListener('click', () => {
         const lon = position.coords.longitude;
         success(lat, lon);
     })
+    refs.location.classList.add('click-location');
 });

@@ -2,6 +2,7 @@ export default {
   form: document.querySelector('form'),
   favoriteBtn: document.querySelector('#favorites'),
   input: document.querySelector('.thumb-input__text'),
+  location: document.querySelector('.thumb-input__location'),
   btnNext: document.querySelector('.btnNext'),
   btnPrev: document.querySelector('.btnPrev'),
   homeContainer: document.querySelector('.home-container'),
