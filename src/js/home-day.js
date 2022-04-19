@@ -13,24 +13,26 @@ export function markupHomeDay(data) {
 
   const currentPlaceTime = convertTimezone(day, timezone);
   const numberDay = currentPlaceTime.getDate();
+
+  const ordinalNum = addNth(numberDay);
   const weekDay = getNameDayHome(currentPlaceTime);
+
   const sunrise = new Date(data.sys.sunrise * 1000);
   const currentPlaceSunrise = convertTimezone(sunrise, timezone);
-  const sunset = new Date(data.sys.sunset * 1000);
-  const currentTimeZoneSS = sunset.getTimezoneOffset() * 60 * 1000;
-  const dayUTCss = sunset.getTime() + currentTimeZoneSS;
-  const currentPlaceSunset = new Date(dayUTCss + timezone);
-  //   const currentPlaceSunset = convertTimezone(sunset, timezone);
   const sunriseHours = currentPlaceSunrise.getHours();
   const sunriseMinutes = currentPlaceSunrise.getMinutes();
+
+  const sunset = new Date(data.sys.sunset * 1000);
+  const currentPlaceSunset = convertTimezone(sunset, timezone);
   const sunsetHours = currentPlaceSunset.getHours();
   const sunsetMinutes = currentPlaceSunset.getMinutes();
+
   const month = getNameMonthHome(day);
 
   clock(data);
   return `
   <div class="home-day home-info-field">
-  <p class="home-date">${numberDay}<sup>th </sup>${weekDay}</p>
+  <p class="home-date">${numberDay}<sup>${ordinalNum} </sup>${weekDay}</p>
       <div class="home-wrap-info">
         <div class="home-wrap-date">
           <p class="home-month">${month}</p>
@@ -54,6 +56,20 @@ export function markupHomeDay(data) {
         </div>
       </div>
       </div>`;
+}
+
+function addNth(numberDay) {
+  if (numberDay > 3 && numberDay < 21) return 'th';
+  switch (numberDay % 10) {
+    case 1:
+      return 'st';
+    case 2:
+      return 'nd';
+    case 3:
+      return 'rd';
+    default:
+      return 'th';
+  }
 }
 
 function getNameDayHome(date) {
