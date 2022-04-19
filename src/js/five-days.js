@@ -58,6 +58,7 @@ export function marcupDays(dataDay, dataDays) {
   </div>`;
 
   refs.fiveDaysNode.innerHTML = marcup;
+  refs.btnShowChartNode.classList.remove('hidden');
 
   const fiveDaysNodeList = document.querySelector('.five-days__list');
   fiveDaysNodeList.addEventListener('click', marcupSectionMore);
@@ -74,6 +75,7 @@ export function marcupMore(e, data) {
 
   const moreNode = document.querySelector('.five-days__more-container');
   refs.fiveDaysNode.classList.add('animation');
+  document.querySelector('.chart').classList.add('animation');
 
   let positionDate = 0;
   for (const item of data.list) {

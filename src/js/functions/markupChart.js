@@ -23,8 +23,6 @@ export function markupChart(data) {
     dataForChart.atmPress.push(day.pressure);
   });
 
-  console.log(dataForChart);
-
   ['myChart-temperature', 'myChart-humidity', 'myChart-wind', 'myChart-atmospherePressure'].forEach(
     id => {
       charts.push(setDataChart(id, dataForChart));
