@@ -24,6 +24,7 @@ refs.input.addEventListener(
 refs.favoriteBtn.addEventListener('click', e => {
   if (!cityName) return;
   refs.input.value = '';
+  refs.location.classList.remove('click-location');
   if (arrFavoriteCityName.includes(cityName)) return;
 
   arrFavoriteCityName.splice(0, 0, cityName);

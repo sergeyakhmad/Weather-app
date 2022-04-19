@@ -69,6 +69,7 @@ refs.form.addEventListener('submit', e => {
     marcupToday();
   }
   refs.input.value = '';
+  refs.location.classList.remove('click-location');
 });
 
 refs.favoriteCityList.addEventListener('click', e => {
