@@ -1,6 +1,17 @@
 import refs from './refs';
 import { ChangeChartOption } from './functions/changeChartLabel';
 
+//появление кнопки Show Chard при переходе на 5 Days
+document.querySelector('.home').addEventListener('click', event => {
+  if (event.target.nodeName !== 'BUTTON') return;
+  console.log(event.target.textContent);
+  if (event.target.textContent === '5 DAYS') {
+    refs.btnShowChartNode.classList.remove('hidden');
+  } else {
+    refs.btnShowChartNode.classList.add('hidden');
+  }
+});
+
 // при нажатии на кнопку Show Chart отображаем график
 refs.btnShowChartNode.addEventListener('click', () => {
   refs.btnShowChartNode.classList.toggle('hidden');
