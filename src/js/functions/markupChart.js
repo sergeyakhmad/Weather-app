@@ -17,9 +17,9 @@ export function markupChart(data) {
 
   data.daily.slice(0, 5).forEach(day => {
     dataForChart.dates.push(timeConverter(day.dt));
-    dataForChart.temperature.push(day.temp.day);
+    dataForChart.temperature.push(Math.round(day.temp.day));
     dataForChart.humidity.push(day.humidity);
-    dataForChart.windSpeed.push(day.wind_speed);
+    dataForChart.windSpeed.push(Math.round(day.wind_speed));
     dataForChart.atmPress.push(day.pressure);
   });
 
