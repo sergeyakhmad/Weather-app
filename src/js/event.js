@@ -1,5 +1,5 @@
 import refs from './refs';
-import { ChangeChartOption } from './chart';
+import { ChangeChartOption } from './functions/changeChartLabel';
 
 // при нажатии на кнопку Show Chart отображаем график
 refs.btnShowChartNode.addEventListener('click', () => {

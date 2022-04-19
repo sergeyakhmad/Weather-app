@@ -9,6 +9,7 @@ import { arrFavoriteCityName } from './favorite-city';
 import { cityName } from './favorite-city';
 import { glide } from './glide-settings';
 import { bgImg } from './bg-api';
+import { markupChart } from './functions/markupChart';
 
 const nameRequest = arrFavoriteCityName[0] || 'kiev';
 let cityValue = cityName;
@@ -25,6 +26,7 @@ export async function marcupFiveDays() {
 
     clearInterval(timeId);
     marcupDays(data, data2);
+    markupChart(data2);
     bgImg(cityValue || nameRequest);
   } catch (err) {
     Notify.info('Invalid country name');
