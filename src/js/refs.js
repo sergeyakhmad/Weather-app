@@ -13,7 +13,7 @@ export default {
   homeDay: document.querySelector('.home-day'),
   favoriteCityList: document.querySelector('.glide__slides'),
   //chart nodes
-  ChartNode: document.querySelector('.chart'),
+  chartWrapNode: document.querySelector('.chart-wrap'),
   btnShowChartNode: document.querySelector('.show-chart__wrap'),
   btnHideChartNode: document.querySelector('.hide-chart__wrap-btn'),
 };
