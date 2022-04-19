@@ -6,6 +6,8 @@ document.querySelector('.home').addEventListener('click', event => {
   if (event.target.classList.contains('home-today-btn')) {
     refs.btnShowChartNode.classList.add('hidden');
     refs.chartWrapNode.classList.add('hidden');
+    refs.fiveDaysNode.classList.remove('animation');
+    document.querySelector('.chart').classList.remove('animation');
   }
 });
 
