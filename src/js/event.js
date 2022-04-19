@@ -3,11 +3,9 @@ import { ChangeChartOption } from './functions/changeChartLabel';
 
 //появление кнопки Show Chard при переходе на 5 Days
 document.querySelector('.home').addEventListener('click', event => {
-  if (event.target.nodeName !== 'BUTTON') return;
-  if (event.target.textContent === '5 DAYS') {
-    refs.btnShowChartNode.classList.remove('hidden');
-  } else {
+  if (event.target.classList.contains('home-today-btn')) {
     refs.btnShowChartNode.classList.add('hidden');
+    refs.chartWrapNode.classList.add('hidden');
   }
 });
 

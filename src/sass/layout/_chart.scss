@@ -1,3 +1,36 @@
+@keyframes animationChartDesk {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-240px);
+  }
+}
+
+@keyframes animationChartTablet {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-290px);
+  }
+}
+
+.chart.animation {
+  @media screen and (min-width: 768px) {
+    animation-name: animationChartTablet;
+    animation-duration: 400ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+  @media screen and (min-width: 1280px) {
+    animation-name: animationChartDesk;
+    animation-duration: 400ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+}
+
 .show-chart__wrap {
   display: flex;
   justify-content: center;
