@@ -1,6 +1,7 @@
 import Chart from 'chart.js/auto';
 
 export function setDataChart(id, data) {
+  console.log(id, data);
   //Global options
   Chart.defaults.font.family = 'Lato';
   Chart.defaults.font.size = 14;

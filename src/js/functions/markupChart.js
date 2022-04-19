@@ -1,6 +1,12 @@
 import { setDataChart } from '../chart';
 
+let charts = [];
 export function markupChart(data) {
+  if (charts.length > 0) {
+    charts.forEach(element => element.destroy());
+    charts = [];
+  }
+
   const dataForChart = {
     dates: [],
     temperature: [],
@@ -9,7 +15,7 @@ export function markupChart(data) {
     atmPress: [],
   };
 
-  const dates = data.daily.slice(0, 5).map(day => {
+  data.daily.slice(0, 5).forEach(day => {
     dataForChart.dates.push(timeConverter(day.dt));
     dataForChart.temperature.push(day.temp.day);
     dataForChart.humidity.push(day.humidity);
@@ -17,8 +23,12 @@ export function markupChart(data) {
     dataForChart.atmPress.push(day.pressure);
   });
 
+  console.log(dataForChart);
+
   ['myChart-temperature', 'myChart-humidity', 'myChart-wind', 'myChart-atmospherePressure'].forEach(
-    id => setDataChart(id, dataForChart),
+    id => {
+      charts.push(setDataChart(id, dataForChart));
+    },
   );
 }
 
