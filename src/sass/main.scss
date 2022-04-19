@@ -4,7 +4,6 @@
 @import './base/reset';
 @import './base/common';
 @import './base/container';
-@import './base/visually-hidden';
 
 @import './layout/header';
 @import './layout/home-buttons.scss';
@@ -13,3 +12,5 @@
 @import './layout/quote';
 @import './layout/five-days';
 @import './layout/chart';
+
+@import './base/visually-hidden';
