@@ -89,7 +89,7 @@ refs.favoriteCityList.addEventListener('click', e => {
   if (e.target.nodeName === 'P') {
     refs.location.classList.remove('click-location');
     cityValue = e.target.textContent;
-    bgImg(cityValue);
+
     refs.input.value = '';
     if (document.querySelector('.home-days-btn')?.hasAttribute('disabled')) {
       marcupFiveDays();
@@ -114,7 +114,6 @@ document.querySelector('#search').addEventListener('click', () => {
 
         refs.input.value = cityValue;
 
-        bgImg(cityValue);
         if (document.querySelector('.home-days-btn')?.hasAttribute('disabled')) {
           marcupFiveDays();
         } else {
@@ -126,4 +125,3 @@ document.querySelector('#search').addEventListener('click', () => {
 });
 
 marcupToday();
-bgImg(cityValue || nameRequest);
