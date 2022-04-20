@@ -1,15 +1,15 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { getWeatherData, oneCallApi } from './api-service';
+import { success } from './geolocation';
+import { bgImg } from './bg-api';
 import { markupHomeWeather } from './home-weather';
 import { markupHomeDay, timeId } from './home-day';
 import { marcupDays, marcupMore } from './five-days';
 import { quoteMarkup, quote } from './quote';
-import refs from './refs/';
-import { arrFavoriteCityName } from './favorite-city';
-import { cityName } from './favorite-city';
+import { arrFavoriteCityName, cityName } from './favorite-city';
 import { glide } from './glide-settings';
-import { bgImg } from './bg-api';
 import { markupChart } from './functions/markupChart';
+import refs from './refs/';
 
 const nameRequest = arrFavoriteCityName[0] || 'kiev';
 let cityValue = cityName;
@@ -62,6 +62,7 @@ export async function marcupToday() {
 
 refs.form.addEventListener('submit', e => {
   e.preventDefault();
+  refs.location.classList.remove('click-location');
   if (refs.input.value === '') return;
 
   cityValue = refs.input.value;
@@ -71,8 +72,6 @@ refs.form.addEventListener('submit', e => {
   } else {
     marcupToday();
   }
-
-  refs.location.classList.remove('click-location');
 });
 
 refs.favoriteCityList.addEventListener('click', e => {
@@ -88,6 +87,7 @@ refs.favoriteCityList.addEventListener('click', e => {
   }
 
   if (e.target.nodeName === 'P') {
+    refs.location.classList.remove('click-location');
     cityValue = e.target.textContent;
     bgImg(cityValue);
     refs.input.value = '';
@@ -97,6 +97,32 @@ refs.favoriteCityList.addEventListener('click', e => {
       marcupToday();
     }
   }
+});
+
+document.querySelector('#search').addEventListener('click', () => {
+  navigator.geolocation.getCurrentPosition(async position => {
+    try {
+      refs.location.classList.add('click-location');
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const res = await success(lat, lon);
+
+      if (res[0].components) {
+        cityValue = res[0].components.city
+          ? res[0].components.city
+          : res[0].components.state.split(' ')[0];
+
+        refs.input.value = cityValue;
+
+        bgImg(cityValue);
+        if (document.querySelector('.home-days-btn')?.hasAttribute('disabled')) {
+          marcupFiveDays();
+        } else {
+          marcupToday();
+        }
+      } else alert(`We are don't found your location!!!`);
+    } catch (err) {}
+  });
 });
 
 marcupToday();

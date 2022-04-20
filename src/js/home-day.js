@@ -1,11 +1,4 @@
-import { fiveDays, getWeatherData, today } from './api-service';
-// import { getNameDay, getNumberDay, getNameMounth } from './date';
-import refs from './refs/';
 import sprite from '../images/symbol-defs.svg';
-
-// getWeatherData('Tokyo', today).then(data => {
-//   markupHomeDay(data);
-// });
 
 export function markupHomeDay(data) {
   const day = new Date(data.dt * 1000);

@@ -1,5 +1,3 @@
-import { fiveDays, getWeatherData, today } from './api-service';
-
 export function markupHomeWeather(data, data2) {
   const temperature = Math.round(data.main.temp);
   const temperatureMin = Math.round(data2.daily[0].temp.min);
