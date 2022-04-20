@@ -17,7 +17,7 @@ export function marcupDays(dataDay, dataDays) {
   </div>
   </div>
   <div class="five-days">
-  <span class="five-days__city-mobile">Kyiv, UA</span>
+  <span class="five-days__city-mobile">${dataDay.city.name}, ${dataDay.city.country}</span>
   <div class="glideDays">
   <div class="glide__track" data-glide-el="track">
   <ul class="five-days__list glide__slides">
