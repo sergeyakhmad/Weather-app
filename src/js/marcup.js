@@ -42,10 +42,11 @@ export async function marcupSectionMore(e) {
 export async function marcupToday() {
   try {
     const weatherData = await getWeatherData(cityValue || nameRequest, 'weather');
+    const data = await oneCallApi(weatherData.coord.lat, weatherData.coord.lon);
     const quoteData = await quote();
 
     const arr = [
-      markupHomeWeather(weatherData),
+      markupHomeWeather(weatherData, data),
       marcupBtn,
       markupHomeDay(weatherData),
       quoteMarkup(quoteData),
@@ -70,7 +71,7 @@ refs.form.addEventListener('submit', e => {
   } else {
     marcupToday();
   }
-  refs.input.value = '';
+
   refs.location.classList.remove('click-location');
 });
 
@@ -89,6 +90,7 @@ refs.favoriteCityList.addEventListener('click', e => {
   if (e.target.nodeName === 'P') {
     cityValue = e.target.textContent;
     bgImg(cityValue);
+    refs.input.value = '';
     if (document.querySelector('.home-days-btn')?.hasAttribute('disabled')) {
       marcupFiveDays();
     } else {
