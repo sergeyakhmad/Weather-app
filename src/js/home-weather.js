@@ -1,13 +1,9 @@
 import { fiveDays, getWeatherData, today } from './api-service';
 
-// getWeatherData('chernihiv', today).then(data => {
-//   markupHomeWeather(data);
-// });
-
-export function markupHomeWeather(data) {
+export function markupHomeWeather(data, data2) {
   const temperature = Math.round(data.main.temp);
-  const temperatureMin = Math.round(data.main.temp_min);
-  const temperatureMax = Math.round(data.main.temp_max);
+  const temperatureMin = Math.round(data2.daily[0].temp.min);
+  const temperatureMax = Math.round(data2.daily[0].temp.max);
   const iconCode = data.weather[0].icon;
   const iconUrl = 'http://openweathermap.org/img/w/' + iconCode + '.png';
   return `
